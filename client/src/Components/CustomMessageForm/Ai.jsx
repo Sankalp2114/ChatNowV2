@@ -25,7 +25,7 @@ const Ai = ({ props, activeChat }) => {
     };
 
     props.onSubmit(form);
-    trigger(from);
+    trigger(form);
     setMessage("");
     setAttachment("");
   };

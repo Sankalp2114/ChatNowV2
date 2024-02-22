@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import helmet from "helmet";
 import morgan from "morgan";
-import genAiRoutes from "./routes/googleAi";
+import genAiRoutes from "./routes/googleAi.js";
 
 dotenv.config();
 
@@ -18,11 +18,12 @@ app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const configuration = new Configuration({
+const configuration = {
   apikey: process.env.API_KEY,
-});
+};
 // Access your API key as an environment variable (see "Set up your API key" above)
-export const genAI = new GoogleGenerativeAI(configuration);
+export const genAI = new GoogleGenerativeAI(configuration.apikey);
+export const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 app.use("/genAi", genAiRoutes);
 
