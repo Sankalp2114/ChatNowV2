@@ -10,8 +10,8 @@ $primary-800: #060f14;
 $secondary-300: #7ac5d7;
 $secondary-500: #219ebc;
 $secondary-800: #00b5e0;
-$tertiary-50: #fff8e6;
-$tertiary-100: #fff1cd;
+$tertiary-50: #fff;
+$tertiary-100: #fff;
 $quaternary-500: #fb8500;
 
 html,
@@ -23,7 +23,7 @@ body,
   margin: 0;
   padding: 0;
 
-  font-family: "Rubik", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 html {
   background-color: #0b0d16;
@@ -57,7 +57,7 @@ body {
 }
 
 .login-page {
-  background-color: $primary-500;
+  background-color: #0b0d16;
   height: 100%;
   width: 100%;
   display: flex;
@@ -278,6 +278,7 @@ body {
   font-family: "Rubik" !important;
   font-weight: bold !important;
   font-size: 24px !important;
+  color: #fff;
 }
 
 .ce-chat-form-button {
@@ -430,7 +431,7 @@ body {
 
 .ce-my-message-body {
   font-family: "Rubik" !important;
-  background-color: $secondary-500 !important;
+  background-color: #2a324f !important;
   color: $tertiary-50 !important;
   border-radius: 8px !important;
   font-size: 14px !important;
@@ -438,7 +439,7 @@ body {
 
 .ce-their-message-body {
   font-family: "Rubik" !important;
-  background-color: $gray-300 !important;
+  background-color: #191e2f !important;
   color: $tertiary-50 !important;
   border-radius: 8px !important;
   font-size: 14px !important;
@@ -560,4 +561,17 @@ body {
 
 ::-webkit-scrollbar-track:hover {
   background: $primary-700;
+}
+
+.login-actions .login-signup-button {
+  margin-top: 10px;
+  color: #e9e9e9;
+  background-color: #428cfc;
+  width: 30%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 6px;
+  align-self: flex-end;
 }

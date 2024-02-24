@@ -78,10 +78,28 @@ router.post("/signup", async (req, res) => {
       }
     );
 
+    let chatId = newChatResponse.data.id;
+
+    const addMemberResponse = await axios.post(
+      `https://api.chatengine.io/chats/${chatId}/people/`,
+      {
+        username: username,
+      },
+      {
+        headers: {
+          "Project-ID": process.env.PROJECT_ID,
+          "User-Name": process.env.BOT_USERNAME,
+          "User-Secret": process.env.BOT_USER_SECRET,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
     res.status(200).json({
       user: chatEngineUserResponse.data,
       chat: newChatResponse.data,
     });
+    console.log(newChatResponse.data);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

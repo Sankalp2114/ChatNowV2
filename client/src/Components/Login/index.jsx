@@ -7,7 +7,7 @@ const Login = ({ setUser, setSecret }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [triggerLogin, resultLogin] = usePostLoginMutation();
-  const [triggerSignUp] = usePostSignUpMutation();
+  const [triggerSignUp, resultSignUp] = usePostSignUpMutation();
 
   const handleLogin = () => {
     triggerLogin({ username, password });
@@ -21,22 +21,42 @@ const Login = ({ setUser, setSecret }) => {
     if (resultLogin.data?.response) {
       setUser(username);
       setSecret(password);
+    } else if (resultLogin.error) {
+      window.alert("Login failed. Check your username or password.");
+      setPassword("");
     }
-  }, [resultLogin.data]);
+  }, [resultLogin.data, resultLogin.error]);
+
+  const labelStyle = {
+    fontWeight: 600,
+    fontSize: "14px",
+    margin: "0",
+    color: "#E9E9E9",
+    display: "block",
+  };
 
   return (
     <div className="login-page">
       <div className="login-container">
-        <h2 className="title">ChatNow V2</h2>
-        <p
-          className="register-chnage"
-          onClick={() => setIsRegister(!isRegister)}
+        <h2
+          className="title"
+          style={{ fontSize: "5em", textAlign: "center", margin: "20px" }}
         >
-          {isRegister
-            ? "Already have an account?"
-            : "Dont have an account? Signup"}
+          ChatNow V2
+        </h2>
+        <p
+          style={{
+            fontSize: "1rem",
+            fontWeight: 500,
+            color: "#A5A5A5",
+            textAlign: "center",
+          }}
+        >
+          Enter your Username and Password
         </p>
+
         <div>
+          <p style={labelStyle}>Username:</p>
           <input
             type="text"
             className="login-input"
@@ -44,6 +64,7 @@ const Login = ({ setUser, setSecret }) => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <p style={labelStyle}>Password:</p>
           <input
             type="password"
             className="login-input"
@@ -52,13 +73,29 @@ const Login = ({ setUser, setSecret }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <p
+          className="register-change"
+          onClick={() => setIsRegister(!isRegister)}
+        >
+          {isRegister
+            ? "Already have an account?"
+            : "Dont have an account? Signup"}
+        </p>
         <div className="login-actions">
           {isRegister ? (
-            <button type="button" onClick={handleSignUp}>
+            <button
+              type="button"
+              onClick={handleSignUp}
+              className="login-signup-button"
+            >
               Signup
             </button>
           ) : (
-            <button type="button" onClick={handleLogin}>
+            <button
+              type="button"
+              onClick={handleLogin}
+              className="login-signup-button"
+            >
               Login
             </button>
           )}
