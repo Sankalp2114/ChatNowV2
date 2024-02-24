@@ -6,6 +6,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import helmet from "helmet";
 import morgan from "morgan";
 import genAiRoutes from "./routes/googleAi.js";
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ export const genAI = new GoogleGenerativeAI(configuration.apikey);
 export const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 app.use("/genAi", genAiRoutes);
+app.use("/auth", authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

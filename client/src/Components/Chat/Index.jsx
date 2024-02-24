@@ -16,22 +16,31 @@ const Chat = ({ user, secret }) => {
   );
 
   return (
-    <div style={{ flexBasis: "100%" }}>
-      <MultiChatSocket {...chatprops} />
-      <MultiChatWindow
-        {...chatprops}
-        style={{ height: "100vh" }}
-        renderChatHeader={(chat) => <Header chat={chat} />}
-        renderMessageForm={(props) => {
-          if (chatprops.chat?.title.startsWith("AiChat_")) {
-            return <Ai props={props} activeChat={chatprops.chat} />;
-          }
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <div style={{ flexBasis: "100%" }}>
+        <MultiChatSocket {...chatprops} />
+        <MultiChatWindow
+          {...chatprops}
+          style={{ height: "90vh" }}
+          renderChatHeader={(chat) => <Header chat={chat} />}
+          renderMessageForm={(props) => {
+            if (chatprops.chat?.title.startsWith("Bard_Ai")) {
+              return <Ai props={props} activeChat={chatprops.chat} />;
+            }
 
-          return (
-            <StandardMessageFrom props={props} activeChat={chatprops.chat} />
-          );
-        }}
-      />
+            return (
+              <StandardMessageFrom props={props} activeChat={chatprops.chat} />
+            );
+          }}
+        />
+      </div>
     </div>
   );
 };

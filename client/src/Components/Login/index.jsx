@@ -48,7 +48,7 @@ const Login = ({ setUser, setSecret }) => {
             type="password"
             className="login-input"
             placeholder="password"
-            value={username}
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
