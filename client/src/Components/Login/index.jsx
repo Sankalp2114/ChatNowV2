@@ -13,8 +13,18 @@ const Login = ({ setUser, setSecret }) => {
     triggerLogin({ username, password });
   };
 
-  const handleSignUp = () => {
-    triggerSignUp({ username, password });
+  const handleSignUp = async () => {
+    try {
+      await triggerSignUp({ username, password });
+      if (resultSignUp.isUninitialized) {
+        triggerLogin({ username, password });
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      const errorMessage =
+        error.message || "Signup failed. This username may already be taken.";
+      window.alert(errorMessage);
+    }
   };
 
   useEffect(() => {
@@ -28,7 +38,10 @@ const Login = ({ setUser, setSecret }) => {
   }, [resultLogin.data, resultLogin.error]);
 
   useEffect(() => {
-    if (resultSignUp.error && resultSignUp.error.data) {
+    if (resultSignUp.data?.response) {
+      setUser(username);
+      setSecret(password);
+    } else if (resultSignUp.error && resultSignUp.error.data) {
       console.error("Signup error:", resultSignUp.error.data);
       const errorMessage =
         resultSignUp.error.data.message ||
