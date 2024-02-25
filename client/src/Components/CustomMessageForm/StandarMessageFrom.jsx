@@ -7,6 +7,12 @@ const StandardMessageForm = ({ props, activeChat }) => {
 
   const handleChange = (e) => setMessage(e.target.value);
 
+  const handleEnterPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const handleSubmit = async () => {
     const date = new Date()
       .toISOString()
@@ -32,6 +38,7 @@ const StandardMessageForm = ({ props, activeChat }) => {
       message={message}
       handleChange={handleChange}
       handleSubmit={handleSubmit}
+      handleKeyDown={handleEnterPress}
     />
   );
 };
