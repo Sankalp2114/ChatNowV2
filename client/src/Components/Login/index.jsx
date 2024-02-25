@@ -27,6 +27,16 @@ const Login = ({ setUser, setSecret }) => {
     }
   }, [resultLogin.data, resultLogin.error]);
 
+  useEffect(() => {
+    if (resultSignUp.error && resultSignUp.error.data) {
+      console.error("Signup error:", resultSignUp.error.data);
+      const errorMessage =
+        resultSignUp.error.data.message ||
+        "Signup failed. This username may already be taken.";
+      window.alert(errorMessage);
+    }
+  }, [resultSignUp.error]);
+
   const labelStyle = {
     fontWeight: 600,
     fontSize: "14px",
