@@ -538,8 +538,8 @@ body {
 
 .ce-danger-button {
   border-radius: 5px !important;
-  background-color: $primary-800 !important;
-  color: $primary-400 !important;
+  background-color: red !important;
+  color: white !important;
 }
 
 #ce-settings-photos-dropdown .ce-dropdown-children {
@@ -574,4 +574,17 @@ body {
   padding: 10px;
   border-radius: 6px;
   align-self: flex-end;
+}
+.login-actions .login-signup-button:disabled {
+  margin-top: 10px;
+  color: #e9e9e9;
+  background-color: #428cfc;
+  width: 30%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 6px;
+  align-self: flex-end;
+  opacity: 70%;
 }

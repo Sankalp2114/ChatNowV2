@@ -8,6 +8,7 @@ const Login = ({ setUser, setSecret }) => {
   const [password, setPassword] = useState("");
   const [triggerLogin, resultLogin] = usePostLoginMutation();
   const [triggerSignUp, resultSignUp] = usePostSignUpMutation();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
     triggerLogin({ username, password });
@@ -15,6 +16,7 @@ const Login = ({ setUser, setSecret }) => {
 
   const handleSignUp = async () => {
     try {
+      setLoading(true);
       await triggerSignUp({ username, password });
       if (resultSignUp.isUninitialized) {
         triggerLogin({ username, password });
@@ -24,6 +26,8 @@ const Login = ({ setUser, setSecret }) => {
       const errorMessage =
         error.message || "Signup failed. This username may already be taken.";
       window.alert(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -110,8 +114,9 @@ const Login = ({ setUser, setSecret }) => {
               type="button"
               onClick={handleSignUp}
               className="login-signup-button"
+              disabled={loading}
             >
-              Signup
+              {loading ? "Signing Up..." : "Sign Up"}
             </button>
           ) : (
             <button
