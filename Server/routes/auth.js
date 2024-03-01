@@ -11,9 +11,10 @@ router.post("/login", async (req, res) => {
       "https://api.chatengine.io/users/me",
       {
         headers: {
-          "Project-ID": process.env.PROJECT_ID,
-          "User-Name": username,
-          "User-Secret": password,
+          ProjectID: process.env.PROJECT_ID,
+          "user-name": username,
+          "user-secret": password,
+          "private-key": process.env.PRIVATE_KEY,
         },
       }
     );
