@@ -24,7 +24,7 @@ const Login = ({ setUser, setSecret }) => {
     } catch (error) {
       console.error("Signup error:", error);
       const errorMessage =
-        error.message || "Signup failed. This username may already be taken.";
+        error.message || "Signup failed, This username may already be taken.";
       window.alert(errorMessage);
     } finally {
       setLoading(false);

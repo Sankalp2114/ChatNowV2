@@ -102,7 +102,7 @@ router.post("/signup", async (req, res) => {
     });
     console.log(newChatResponse.data);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ err: error.message });
   }
 });
 
